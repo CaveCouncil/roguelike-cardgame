@@ -1,0 +1,128 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcvl543w7vf1l"]
+
+[ext_resource type="Script" path="res://assets/cards/CardBase.gd" id="1_d6vgg"]
+[ext_resource type="Texture2D" uid="uid://dp3a28fj4bece" path="res://assets/cards/Card Borders etc/cardborder.png" id="2_p1bec"]
+[ext_resource type="Texture2D" uid="uid://bq7knowi5s5g8" path="res://assets/cards/Card Borders etc/background shade.png" id="3_3fmwy"]
+[ext_resource type="Texture2D" uid="uid://cwyojc1d6cs0o" path="res://assets/cards/Card Borders etc/BackgroundImage.png" id="3_vqy8p"]
+
+[node name="CardBase" type="MarginContainer"]
+offset_right = 250.0
+offset_bottom = 350.0
+pivot_offset = Vector2(125, 175)
+script = ExtResource("1_d6vgg")
+
+[node name="Card" type="Sprite2D" parent="."]
+position = Vector2(115, 153)
+
+[node name="Background" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(2, 3)
+scale = Vector2(1.13065, 1.50754)
+texture = ExtResource("3_vqy8p")
+centered = false
+
+[node name="Border" type="Sprite2D" parent="."]
+position = Vector2(117.25, 153)
+scale = Vector2(1.01965, 1)
+texture = ExtResource("2_p1bec")
+
+[node name="Bars" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TopGap" type="MarginContainer" parent="Bars"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="TopBar" type="HBoxContainer" parent="Bars"]
+layout_mode = 2
+
+[node name="LeftGap" type="MarginContainer" parent="Bars/TopBar"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="Name" type="MarginContainer" parent="Bars/TopBar"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Bars/TopBar/Name"]
+layout_mode = 2
+texture = ExtResource("3_3fmwy")
+
+[node name="CenterContainer" type="CenterContainer" parent="Bars/TopBar/Name"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Bars/TopBar/Name/CenterContainer"]
+layout_mode = 2
+text = "Grug"
+
+[node name="MiddleGap" type="MarginContainer" parent="Bars/TopBar"]
+custom_minimum_size = Vector2(125, 25)
+layout_mode = 2
+
+[node name="Cost" type="MarginContainer" parent="Bars/TopBar"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Bars/TopBar/Cost"]
+layout_mode = 2
+texture = ExtResource("3_3fmwy")
+
+[node name="CenterContainer" type="CenterContainer" parent="Bars/TopBar/Cost"]
+layout_mode = 2
+
+[node name="Cost" type="Label" parent="Bars/TopBar/Cost/CenterContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="RightGap" type="MarginContainer" parent="Bars/TopBar"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="MidGap" type="MarginContainer" parent="Bars"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BottomBar" type="HBoxContainer" parent="Bars"]
+layout_mode = 2
+
+[node name="LeftGap" type="MarginContainer" parent="Bars/BottomBar"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="Health" type="MarginContainer" parent="Bars/BottomBar"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Bars/BottomBar/Health"]
+layout_mode = 2
+texture = ExtResource("3_3fmwy")
+
+[node name="CenterContainer" type="CenterContainer" parent="Bars/BottomBar/Health"]
+layout_mode = 2
+
+[node name="Health" type="Label" parent="Bars/BottomBar/Health/CenterContainer"]
+layout_mode = 2
+text = "1/1"
+
+[node name="MiddleGap" type="MarginContainer" parent="Bars/BottomBar"]
+custom_minimum_size = Vector2(155, 25)
+layout_mode = 2
+
+[node name="Attack" type="MarginContainer" parent="Bars/BottomBar"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Bars/BottomBar/Attack"]
+layout_mode = 2
+texture = ExtResource("3_3fmwy")
+
+[node name="CenterContainer" type="CenterContainer" parent="Bars/BottomBar/Attack"]
+layout_mode = 2
+
+[node name="Attack" type="Label" parent="Bars/BottomBar/Attack/CenterContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="RightGap" type="MarginContainer" parent="Bars/BottomBar"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Bars"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
