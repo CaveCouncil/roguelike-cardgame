@@ -1,6 +1,6 @@
 # Setup
 1. Download and install git and gitbash: https://git-scm.com/downloads
-2. (in Winodws) Go to where you want to download the repo then right click and open with gitbash then type
+2. (in Windows) Go to where you want to download the repo then right click and open with gitbash then type
 ```
 git clone git@github.com:CaveCouncil/roguelike-cardgame.git --branch main roguelike-cardgame
 cd roguelike-cardgame
