@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="card project"
-run/main_scene="res://play_space.tscn"
+run/main_scene="res://MainMenu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[audio]
+
+driver/enable_input=true
 
 [input]
 

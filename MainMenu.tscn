@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2poo7e8nev3u"]
+
+[ext_resource type="AudioStream" uid="uid://c2glfupeaqicn" path="res://assets/Music/menuMusic.wav" id="1_dy2tr"]
+
+[sub_resource type="GDScript" id="GDScript_i5hqt"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+	
+	
+var town_scene = preload(\"res://Town.tscn\")
+	
+func _on_pressed():
+	print(\"Pressed\")
+	get_tree().change_scene_to_packed(town_scene)
+"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_dy2tr")
+volume_db = -33.642
+autoplay = true
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1150.0
+offset_bottom = 651.0
+
+[node name="Button" type="Button" parent="CenterContainer"]
+layout_mode = 2
+text = "Play Game"
+script = SubResource("GDScript_i5hqt")
+
+[connection signal="pressed" from="CenterContainer/Button" to="CenterContainer/Button" method="_on_pressed"]

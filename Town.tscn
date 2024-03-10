@@ -1,0 +1,124 @@
+[gd_scene load_steps=11 format=3 uid="uid://crksxrk6d8tjv"]
+
+[ext_resource type="Script" path="res://TownCameraController.gd" id="1_m2xs6"]
+[ext_resource type="AudioStream" uid="uid://c2glfupeaqicn" path="res://assets/Music/menuMusic.wav" id="2_0ebky"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rf0gc"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_6jq0o"]
+sky_material = SubResource("ProceduralSkyMaterial_rf0gc")
+
+[sub_resource type="Environment" id="Environment_o80dr"]
+background_mode = 2
+sky = SubResource("Sky_6jq0o")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xhfmx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mvtl5"]
+albedo_color = Color(0.466667, 0.427451, 0.227451, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5dsm6"]
+
+[sub_resource type="GDScript" id="GDScript_5raw7"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+var heaven_scene = preload(\"res://Heaven.tscn\")
+
+func _on_pressed():
+	print(\"GO TO HEAVEN BITCH\")
+	get_tree().change_scene_to_packed(heaven_scene)
+"
+
+[sub_resource type="GDScript" id="GDScript_mh8qs"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+var hell_scene = preload(\"res://Hell.tscn\")
+
+func _on_pressed():
+	print(\"GO TO HELL\")
+	get_tree().change_scene_to_packed(hell_scene)
+"
+
+[node name="Town" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_o80dr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 8.65886, 0.449875)
+projection = 1
+size = 9.589
+near = 0.011
+script = ExtResource("1_m2xs6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+mesh = SubResource("PlaneMesh_xhfmx")
+surface_material_override/0 = SubResource("StandardMaterial3D_mvtl5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.30403)
+mesh = SubResource("CylinderMesh_5dsm6")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0ebky")
+volume_db = -29.35
+autoplay = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HeavenButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 25.0
+offset_right = 603.0
+offset_bottom = 56.0
+text = "Go To Heaven"
+script = SubResource("GDScript_5raw7")
+
+[node name="HellButton" type="Button" parent="Control"]
+offset_left = 507.0
+offset_top = 547.0
+offset_right = 594.0
+offset_bottom = 578.0
+text = "Go To Hell
+"
+script = SubResource("GDScript_mh8qs")
+
+[connection signal="pressed" from="Control/HeavenButton" to="Control/HeavenButton" method="_on_pressed"]
+[connection signal="pressed" from="Control/HellButton" to="Control/HellButton" method="_on_pressed"]
